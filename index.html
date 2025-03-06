@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academy Court Booking</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- PWA requirements -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#3498db">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <h1>Academy Court Booking</h1>
+        </header>
+        
+        <main>
+            <section class="booking-section">
+                <h2>Book a Court</h2>
+                
+                <div class="date-selector">
+                    <label for="booking-date">Select Date:</label>
+                    <input type="date" id="booking-date">
+                </div>
+                
+                <div class="time-slots-container">
+                    <h3>Morning Slots</h3>
+                    <div class="time-slots morning-slots">
+                        <button class="time-slot" data-time="6-7AM">6:00 - 7:00 AM <span class="availability">(5/5 available)</span></button>
+                        <button class="time-slot" data-time="7-8AM">7:00 - 8:00 AM <span class="availability">(5/5 available)</span></button>
+                        <button class="time-slot" data-time="8-9AM">8:00 - 9:00 AM <span class="availability">(5/5 available)</span></button>
+                        <button class="time-slot" data-time="9-10AM">9:00 - 10:00 AM <span class="availability">(5/5 available)</span></button>
+                    </div>
+                    
+                    <h3>Evening Slots</h3>
+                    <div class="time-slots evening-slots">
+                        <button class="time-slot" data-time="6-7PM">6:00 - 7:00 PM <span class="availability">(5/5 available)</span></button>
+                        <button class="time-slot" data-time="7-8PM">7:00 - 8:00 PM <span class="availability">(5/5 available)</span></button>
+                        <button class="time-slot" data-time="8-9PM">8:00 - 9:00 PM <span class="availability">(5/5 available)</span></button>
+                        <button class="time-slot" data-time="9-10PM">9:00 - 10:00 PM <span class="availability">(5/5 available)</span></button>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="booking-form hidden" id="booking-form">
+                <h2>Complete Your Booking</h2>
+                <form id="court-booking-form">
+                    <div class="form-group">
+                        <label for="name">Full Name:</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number:</label>
+                        <input type="tel" id="phone" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="member-id">Membership ID:</label>
+                        <input type="text" id="member-id" required>
+                    </div>
+                    
+                    <div class="booking-summary">
+                        <p>You are booking: <span id="booking-time-display"></span></p>
+                        <p>Date: <span id="booking-date-display"></span></p>
+                    </div>
+                    
+                    <button type="submit" class="submit-button">Confirm Booking</button>
+                </form>
+            </section>
+            
+            <section class="admin-section hidden" id="admin-section">
+                <h2>Admin Panel</h2>
+                <div class="admin-controls">
+                    <button id="view-bookings-btn">View All Bookings</button>
+                    <button id="manage-members-btn">Manage Members</button>
+                </div>
+                
+                <div class="bookings-list" id="bookings-list">
+                    <!-- Bookings will be displayed here -->
+                </div>
+            </section>
+        </main>
+        
+        <footer>
+            <p>© 2025 Academy Court Booking | <a href="#" id="admin-login">Admin Login</a></p>
+        </footer>
+    </div>
+
+    <!-- Add scripts -->
+    <script src="app.js"></script>
+    <!-- PWA service worker registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js')
+            .then(function(registration) {
+                console.log('Service Worker registered with scope:', registration.scope);
+            })
+            .catch(function(error) {
+                console.log('Service Worker registration failed:', error);
+            });
+        }
+    </script>
+</body>
+</html>
